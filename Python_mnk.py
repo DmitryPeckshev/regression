@@ -13,23 +13,23 @@ else:
             arr_line = arr_line.strip(' ')
             arr_line = arr_line.split(' ')
             i = 0
-            while i < len(arr_line):    # удаление пробелов
+            while i < len(arr_line):   
                 if arr_line[i] == ' ' or arr_line[i] == '':
                     del arr_line[i]
                 else:
                     try:
-                        arr_line[i] = float(arr_line[i])  # проверка на тип число
+                        arr_line[i] = float(arr_line[i])  
                     except:
                         print('there is no digit')
                         input()
                         exit()
                     i += 1
-            if n>0 and n!=len(arr_line):  # проверка на одинаковую длину строк
+            if n>0 and n!=len(arr_line):  
                 print("error: in input file length of rows not the same")
                 input()
                 exit()
             n = len(arr_line)
-            input_array.append(arr_line)  # заносим строку в массив
+            input_array.append(arr_line)  
 input("Input.txt open successfully! Press Enter.")
 
 i = 0
@@ -58,6 +58,19 @@ file_write = open('output.txt', 'w')
 file_write.write(equation)
 file_write.close
 
+param1 = 0
+param2 = 0
+i = 0
+for dig in input_array[0]: 
+    yp = a*dig + b
+    param1 += (yp-y_vector)*(yp-y_vector)
+    param2 += (input_array[1][i]-y_vector)*(input_array[1][i]-y_vector)
+    i+=1
+
+r = param1/param2
+
 print(equation)	
+print('Coefficient of determination:',round(r*100),'%')
+
 print('All good!')
 input()
